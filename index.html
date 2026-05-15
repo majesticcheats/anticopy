@@ -1,0 +1,77 @@
+<script>
+
+const anticopy = "majestic_secure_key_v1";
+
+const allowedDomains = [
+"localhost",
+"127.0.0.1",
+"majesticcheats.github.io"
+];
+
+if (
+anticopy !== "majestic_secure_key_v1" ||
+!allowedDomains.includes(window.location.hostname)
+){
+
+Promise.all([
+fetch("angel.txt").then(r => r.text()),
+fetch("dontcopy.txt").then(r => r.text())
+])
+
+.then(([angelAscii, dontcopyAscii]) => {
+
+document.body.innerHTML = `
+<style>
+
+body{
+margin:0;
+background:#000;
+color:#00ff88;
+padding:20px;
+font-family:Consolas,monospace;
+overflow:auto;
+}
+
+pre{
+white-space:pre;
+text-shadow:0 0 10px #00ff88;
+}
+
+.big{
+font-size:6px;
+line-height:6px;
+}
+
+.small{
+font-size:10px;
+line-height:10px;
+margin-top:60px;
+}
+
+</style>
+
+<pre class="big">${angelAscii}</pre>
+
+<pre class="small">${dontcopyAscii}</pre>
+`;
+
+})
+
+.catch(() => {
+
+document.body.innerHTML = `
+<h1 style="
+color:red;
+font-family:monospace;
+text-align:center;
+margin-top:100px;
+">
+ACCESS DENIED
+</h1>
+`;
+
+});
+
+}
+
+</script>
